@@ -19,8 +19,10 @@ jobs:
 
       - name: Android SDK
         run: |
+          SDK=/usr/local/lib/android/sdk
+          export PATH="$PATH:$(ls -d $SDK/cmdline-tools/*/bin | head -1)"
           yes | sdkmanager --licenses > /dev/null 2>&1 || true
-          sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools" > /dev/null
+          sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools"
 
       - name: Gradlew izni
         run: chmod +x gradlew
